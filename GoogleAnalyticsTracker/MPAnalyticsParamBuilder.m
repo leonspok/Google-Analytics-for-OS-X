@@ -123,7 +123,14 @@ NSString *const MPUserTimingLabelKey = @"utl";
                                     label:(NSString *)eventLabel value:(NSNumber *)eventValue
                        contentDescription:(NSString *)contentDescription customDimension:(NSString *)customDimension
 {
-    NSAssert(eventCategory && eventAction && eventLabel && eventValue, @"All event arguments should be != nil. Use [NSNull null] to remove one of the parameters from request");
+    NSAssert(eventCategory && eventAction, @"eventCategory and eventAction arguments should be != nil. Use [NSNull null] to remove one of the parameters from request");
+	
+	if (eventLabel == nil) {
+		eventLabel = (id)[NSNull null];
+	}
+	if (eventValue == nil) {
+		eventValue = (id)[NSNull null];
+	}
     
     MPEventParams *eventParams = [MPEventParams new];
     eventParams.hitType = @"event";
