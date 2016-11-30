@@ -203,9 +203,10 @@ static id _sharedInstance = nil;
     if (!_systemInfo)
     {
         NSRect screenFrame = NSScreen.mainScreen.frame;
+		CGFloat scale = [[NSScreen mainScreen] backingScaleFactor];
         NSString *preferredLanguage = NSLocale.preferredLanguages[0];
         _systemInfo = [NSString stringWithFormat:@"&sr=%ldx%ld&ul=%@",
-                       (NSInteger)NSWidth(screenFrame), (NSInteger)NSHeight(screenFrame),
+                       (NSInteger)(NSWidth(screenFrame)*scale), (NSInteger)(NSHeight(screenFrame)*scale),
                        preferredLanguage];
     }
     
